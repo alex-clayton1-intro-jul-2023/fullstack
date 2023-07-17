@@ -11,6 +11,6 @@ import { HeaderComponent } from "./components/header.component";
     imports: [CommonModule, RouterOutlet, HeaderComponent]
 })
 export class AppComponent {
-  title = 'Intro to Programming Sample App'; // Controls the name of the webpage
+  title = 'Intro to Programming Sample App.'; // Controls the name of the webpage
   favcolor = 'Red';
 }
