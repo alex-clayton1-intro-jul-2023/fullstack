@@ -5,9 +5,9 @@ import { Component } from "@angular/core";
     standalone: true,
     selector: 'app-header', // Can do whatever here
     template: `
-<header>
-<h1 class=>Intro to Programming</h1>
-<p>Sample Full-Stack Application for testing!! so fun!</p>
+<header class="p-4 border-b-2 border-black">
+<h1 class="text-4xl text-primary font-black">Intro to Programming</h1>
+<p>Sample Full-Stack Application For The Training Class</p>
 </header>
     `
 })
