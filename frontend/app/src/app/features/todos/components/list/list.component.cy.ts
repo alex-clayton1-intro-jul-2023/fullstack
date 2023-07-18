@@ -83,4 +83,30 @@ describe(ListComponent.name, () => {
         .should('have.text', 'No Items in Your List');
     });
   });
+  describe('Interactions', () => {
+        describe('Cycling the Status', () => {
+            it('Emits the output on click', () => {
+                let items: TodoListItemModel[] = [
+                  { id: '1', description: 'Tacos', status: 'Later' },
+                  { id: '2', description: 'Wash Keyboard', status: 'Now' },
+                ];
+                cy.mount(ListComponent, {
+                  componentProperties: {
+                    list: items,
+                  },
+                  autoSpyOutputs: true,
+                });
+        
+         
+        
+                cy.get('li').first().find('button').click();
+                cy.get('@onStatusCycledSpy').should(
+                  'have.been.calledOnceWith',
+                  items[0]
+                );
+              });
+
+        });
+  }
+  );
 });

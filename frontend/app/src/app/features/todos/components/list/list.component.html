@@ -10,7 +10,9 @@
         }"
     >
     <span class="text-2xl">{{ item.description }}</span>
-    <button class="ml-3 btn btn-sm btn-active btn-accent">
+    <button 
+        (click)="cycleTheStatus(item)" 
+        class="ml-3 btn btn-sm btn-active btn-accent">
           {{ item.status }}
     </button>
     </li>
