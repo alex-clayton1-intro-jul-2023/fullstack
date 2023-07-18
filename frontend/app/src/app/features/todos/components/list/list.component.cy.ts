@@ -2,11 +2,8 @@
 // When write tests for a component, want to describe it in various different modes
 // If building calculator, want to describe that it can do addition. It should be able to take 2+2 and produce 4.
 
-
 import { TodoListItemModel } from '../../models';
 import { ListComponent } from './list.component';
-
- 
 
 describe(ListComponent.name, () => {
   describe('Utopian State', () => {
@@ -36,13 +33,9 @@ describe(ListComponent.name, () => {
       })
     );
 
- 
-
     it('Has Four Items', () => {
       cy.get('li').should('have.length', 4);
     });
-
- 
 
     it('The First Item is For Later', () => {
       cy.get('li')
@@ -69,13 +62,9 @@ describe(ListComponent.name, () => {
       })
     );
 
- 
-
     it('Should not display the list', () => {
       cy.get('[data-testid="shopping-list"]').should('not.exist');
     });
-
- 
 
     it('Should display an alert with a message', () => {
       cy.get('[data-testid="empty-list-alert"]')
@@ -84,29 +73,25 @@ describe(ListComponent.name, () => {
     });
   });
   describe('Interactions', () => {
-        describe('Cycling the Status', () => {
-            it('Emits the output on click', () => {
-                let items: TodoListItemModel[] = [
-                  { id: '1', description: 'Tacos', status: 'Later' },
-                  { id: '2', description: 'Wash Keyboard', status: 'Now' },
-                ];
-                cy.mount(ListComponent, {
-                  componentProperties: {
-                    list: items,
-                  },
-                  autoSpyOutputs: true,
-                });
-        
-         
-        
-                cy.get('li').first().find('button').click();
-                cy.get('@onStatusCycledSpy').should(
-                  'have.been.calledOnceWith',
-                  items[0]
-                );
-              });
-
+    describe('Cycling the Status', () => {
+      it('Emits the output on click', () => {
+        let items: TodoListItemModel[] = [
+          { id: '1', description: 'Tacos', status: 'Later' },
+          { id: '2', description: 'Wash Keyboard', status: 'Now' },
+        ];
+        cy.mount(ListComponent, {
+          componentProperties: {
+            list: items,
+          },
+          autoSpyOutputs: true,
         });
-  }
-  );
+
+        cy.get('li').first().find('button').click();
+        cy.get('@onStatusCycledSpy').should(
+          'have.been.calledOnceWith',
+          items[0]
+        );
+      });
+    });
+  });
 });
