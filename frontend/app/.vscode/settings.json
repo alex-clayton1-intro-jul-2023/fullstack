@@ -21,5 +21,8 @@
     "peacock.color": "#dd0531",
     "files.associations": {
         "*.css": "tailwindcss"
-      }
+      },
+      "explorer.compactFolders": false,
+      "workbench.tree.indent": 12, // Changes the size of the worktree to the left
+      "editor.formatOnSave": true
 }
