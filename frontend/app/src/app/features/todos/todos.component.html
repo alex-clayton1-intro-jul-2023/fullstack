@@ -1,0 +1,11 @@
+<section>
+    <h2 class="text-2xl">Your Todo List Stuff</h2>
+    </section>
+    <section>
+    <app-entry (onItemAdded)="addItem($event)"/>
+    </section>
+    
+    <section>
+    <!--<app-list /> Getting error since you need to specify some list for it. The @Input makes it so it is required-->
+    <app-list [list]="todoList"/>
+</section>
