@@ -26,4 +26,23 @@ describe(EntryComponent.name, () => {
       cy.get('[data-testid="error-alert"]').should('not.exist');
     });
   });
+
+  describe('Validation', () => {
+    beforeEach(() =>
+      cy.mount(EntryComponent, {
+        autoSpyOutputs: true,
+      })
+    );
+    it('Shows an error on empty entry', () => {
+      cy.get('button[type="submit"]').click();
+      cy.get('@onItemAddedSpy').should('not.be.called');
+      cy.get('[data-testid="error-alert"]').should('exist');
+    });
+    it('Shows an error on empty entry', () => {
+      cy.get('input#description').type('{enter}');
+
+      cy.get('@onItemAddedSpy').should('not.be.called');
+      cy.get('[data-testid="error-alert"]').should('exist');
+    });
+  });
 });
