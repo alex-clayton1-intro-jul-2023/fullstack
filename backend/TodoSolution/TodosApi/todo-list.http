@@ -1,0 +1,16 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+###
+
+
+GET http://localhost:8080/todo-list
+
+### Add one
+
+
+POST http://localhost:8080/todo-list
+Content-Type: application/json
+// This space below is mandatory. If it is not working, you need to have an empty line after Content-Type
+
+{
+  "description": "hmmmm"
+}
