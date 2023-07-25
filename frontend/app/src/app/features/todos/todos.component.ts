@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './components/list/list.component';
 import { EntryComponent } from './components/entry/entry.component';
 import { TodoListEntryModel, TodoListItemModel } from './models';
+import { Store } from '@ngrx/store';
+import { FeatureEvents } from './state/feature.actions';
+import { TodosEvents } from './state/todos.actions';
 
 @Component({
   selector: 'app-todos',
@@ -12,6 +15,10 @@ import { TodoListEntryModel, TodoListItemModel } from './models';
   imports: [CommonModule, ListComponent, EntryComponent],
 })
 export class TodosComponent {
+  constructor(private readonly store: Store) {
+    store.dispatch(FeatureEvents.featureEntered());
+  }
+
   todoList: TodoListItemModel[] = [
     {
       id: '1',
@@ -21,13 +28,9 @@ export class TodosComponent {
   ];
 
   addItem(candidate: TodoListEntryModel) {
-    // send it to the API, when it returns
-    // POST http:/api.com/todolist
-    const newItem: TodoListItemModel = {
-      id: '99',
-      description: candidate.description,
-      status: 'Later',
-    };
-    this.todoList = [newItem, ...this.todoList];
+    this.store.dispatch(TodosEvents.itemAdded({ payload: candidate }));
+  }
+  statusChange(payload: TodoListItemModel) {
+    this.store.dispatch(TodosEvents.itemStatusCycled({ payload }));
   }
 }
